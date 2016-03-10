@@ -1,7 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<%@taglib uri="http://jakarta.apache.org/struts/tags-html" prefix="html"%>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="de">
    <!-- benutzt menuh.css, struktur.css und s4you.css und neue css-basierte Aufteilung -->
    <head>
@@ -14,11 +11,7 @@
       <!-- Begin_Meta -->
       <!-- End_Meta -->
       <!-- Begin_Style -->
-      <LINK rel="stylesheet" type="text/css" href="<html:rewrite page='/platform/common/styles/struktur.css'/>">
-      <!-- 
       <link rel="stylesheet" type="text/css" media="screen" href="${pageContext.request.contextPath}/platform/common/styles/struktur.css">
-       -->
-      
       <link rel="stylesheet" type="text/css" media="screen" href="${pageContext.request.contextPath}/platform/common/styles/s4you.css">
       <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/platform/common/styles/global.css">
       <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/platform/common/styles/taximage.css">
