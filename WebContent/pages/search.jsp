@@ -45,11 +45,17 @@
       <!-- End_Head -->
       <!-- Begin_Script -->
       <script language="JavaScript" type="text/javascript" src="${pageContext.request.contextPath}/platform/common/scripts/i8n.js"></script>
+      <!--  
       <script language="JavaScript" type="text/javascript" src="${pageContext.request.contextPath}/platform/common/scripts/jquery/jquery-1.8.2.min.js"></script>
+      -->
+      <script language="JavaScript" type="text/javascript" src="${pageContext.request.contextPath}/platform/common/scripts/jquery/jquery-1.9.1.min.js"></script>
       <script language="JavaScript" type="text/javascript" src="${pageContext.request.contextPath}/platform/common/scripts/jquery/jquery-ui-1.8.16.custom.min.js"></script>
       <script language="JavaScript" type="text/javascript" src="${pageContext.request.contextPath}/platform/common/scripts/jquery/jquery.cookie.js"></script>
       <script language="JavaScript" type="text/javascript" src="${pageContext.request.contextPath}/platform/common/scripts/jquery/jquery.hotkeys.js"></script>
+      <!--  
       <script language="JavaScript" type="text/javascript" src="${pageContext.request.contextPath}/platform/common/scripts/jquery/jquery.jstree.js"></script>
+      -->
+      <script language="JavaScript" type="text/javascript" src="${pageContext.request.contextPath}/platform/common/scripts/jstree/jstree.js"></script>
       <script language="JavaScript" type="text/javascript" src="${pageContext.request.contextPath}/platform/common/scripts/jquery/jquery.form.js"></script><script language="JavaScript" type="text/javascript" src="${pageContext.request.contextPath}/platform/common/scripts/colorbox/jquery.colorbox-min.js"></script>
       <script language="JavaScript" type="text/javascript" src="${pageContext.request.contextPath}/platform/common/scripts/select2/jquery/jquery.jstree.js"></script>
       <script language="JavaScript" type="text/javascript" src="${pageContext.request.contextPath}/platform/common/scripts/select2/js/select2.js"></script>

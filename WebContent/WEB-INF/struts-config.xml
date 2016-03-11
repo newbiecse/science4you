@@ -16,7 +16,7 @@
 
 	<action-mappings>
 		<action path="/region" type="org.science4you.actions.RegionAction" parameter="dispatch" name="regionForm">
-			<forward name="search" path="/pages/search.jsp" />
+			<forward name="search" path="/pages/map.jsp" />
 		</action>
 	</action-mappings>
 	

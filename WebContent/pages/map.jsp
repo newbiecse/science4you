@@ -1,4 +1,7 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@taglib uri="http://jakarta.apache.org/struts/tags-html" prefix="html"%>
 <html lang="de">
    <!-- benutzt menuh.css, struktur.css und s4you.css und neue css-basierte Aufteilung -->
    <head>
@@ -11,7 +14,11 @@
       <!-- Begin_Meta -->
       <!-- End_Meta -->
       <!-- Begin_Style -->
+      <LINK rel="stylesheet" type="text/css" href="<html:rewrite page='/platform/common/styles/struktur.css'/>">
+      <!-- 
       <link rel="stylesheet" type="text/css" media="screen" href="${pageContext.request.contextPath}/platform/common/styles/struktur.css">
+       -->
+      
       <link rel="stylesheet" type="text/css" media="screen" href="${pageContext.request.contextPath}/platform/common/styles/s4you.css">
       <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/platform/common/styles/global.css">
       <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/platform/common/styles/taximage.css">
@@ -28,6 +35,7 @@
       <!-- End_Style -->
       <!-- select2 default -->
       <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/platform/common/scripts/select2/css/select2.css">
+      <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/platform/common/scripts/jstree/themes/default/style.min.css">
       <!-- End_Style -->
       <!-- Begin_Head -->
       <script language="JavaScript" src="${pageContext.request.contextPath}/platform/common/scripts/authortools.js"></script>
@@ -38,15 +46,26 @@
       <!-- End_Head -->
       <!-- Begin_Script -->
       <script language="JavaScript" type="text/javascript" src="${pageContext.request.contextPath}/platform/common/scripts/i8n.js"></script>
+      <!--  
       <script language="JavaScript" type="text/javascript" src="${pageContext.request.contextPath}/platform/common/scripts/jquery/jquery-1.8.2.min.js"></script>
+      -->
+      <script language="JavaScript" type="text/javascript" src="${pageContext.request.contextPath}/platform/common/scripts/jquery/jquery-1.9.1.min.js"></script>
       <script language="JavaScript" type="text/javascript" src="${pageContext.request.contextPath}/platform/common/scripts/jquery/jquery-ui-1.8.16.custom.min.js"></script>
       <script language="JavaScript" type="text/javascript" src="${pageContext.request.contextPath}/platform/common/scripts/jquery/jquery.cookie.js"></script>
       <script language="JavaScript" type="text/javascript" src="${pageContext.request.contextPath}/platform/common/scripts/jquery/jquery.hotkeys.js"></script>
+      <!--  
       <script language="JavaScript" type="text/javascript" src="${pageContext.request.contextPath}/platform/common/scripts/jquery/jquery.jstree.js"></script>
+      -->
+      <script language="JavaScript" type="text/javascript" src="${pageContext.request.contextPath}/platform/common/scripts/jstree/jstree.js"></script>
+      <script language="JavaScript" type="text/javascript" src="${pageContext.request.contextPath}/platform/common/scripts/jstree/speciestree.js"></script>
       <script language="JavaScript" type="text/javascript" src="${pageContext.request.contextPath}/platform/common/scripts/jquery/jquery.form.js"></script><script language="JavaScript" type="text/javascript" src="${pageContext.request.contextPath}/platform/common/scripts/colorbox/jquery.colorbox-min.js"></script>
-      <script language="JavaScript" type="text/javascript" src="${pageContext.request.contextPath}/platform/common/scripts/select2/jquery/jquery.jstree.js"></script>
       <script language="JavaScript" type="text/javascript" src="${pageContext.request.contextPath}/platform/common/scripts/select2/js/select2.js"></script>
       <script language="JavaScript" type="text/javascript" src="${pageContext.request.contextPath}/platform/common/scripts/searchmenu.js"></script>
+      <script type="text/javascript">
+      	$(function() {
+      		SpeciesTree.init();
+      	})
+      </script>
       <script type="text/javascript">
          <!-- First_global_variables -->
          
@@ -114,7 +133,8 @@
          	});
          
          	//When clicking on the button close or the mask layer the popup closed
-         	$('a.close, #mask').live('click', function() {
+         	//$('a.close, #mask').live('click', function() {
+       		$('a.close, #mask').on('click', function() {
          		$('#mask , .login-popup').fadeOut(300, function() {
          			$('#mask').remove();
          		});
@@ -306,6 +326,12 @@
                   </li>
                </ul>
                <p>&nbsp;</p>
+               
+               <div id="formFilter">
+               		<div id="speciesTree">
+               		</div>
+               </div>
+               
                <p>&nbsp;</p>
                <p class="note">Diese Darstellung beruht auf periodischen, automatisiert erstellten Karten. Das Erstellungsdatum
                   ist bei der jeweiligen Karte vermerkt.
