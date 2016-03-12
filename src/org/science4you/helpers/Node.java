@@ -9,6 +9,10 @@ public class Node {
 	private String text;
 	private List<SubNode> children;
 	
+	private String icon = "+";
+	private Object li_attr = new Object();
+	private Object a_attr = new Object();	
+	
 	public Node(int id, String text) {
 		this.id = id;
 		this.text = text;

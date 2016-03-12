@@ -12,7 +12,15 @@ SpeciesTree = function () {
 		    	  "dataType" : "json",
 		    	  "data" : function (node) {
 		    		  return { "id" : node.id };
-		    	  }		    	  
+		    	  },
+		    	  "success" : function(n) {
+		
+		    		  for(var i = 0; i < n.length; i++) {
+		    			  n[i].li_attr['class'] = 'family-name';//n[i].csscl;
+		    		  }
+		    		  
+		    		  return n;                 
+		    	  }		
 		      }
 		    }
 		});		

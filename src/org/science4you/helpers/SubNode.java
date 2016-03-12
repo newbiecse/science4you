@@ -6,6 +6,10 @@ public class SubNode {
 	private String text;
 	private Boolean children;
 	
+	private String icon = "+";
+	private Object li_attr = new Object();
+	private Object a_attr = new Object();
+	
 	public SubNode(int id, String text) {
 		this.id = id;
 		this.text = text;

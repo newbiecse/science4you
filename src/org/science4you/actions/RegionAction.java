@@ -37,7 +37,7 @@ public class RegionAction extends DispatchAction {
 		String sId = request.getParameter("id");
 		int id = 0;
 		
-		if (StringUtil.isInteger(sId)) {
+		if (sId != null && StringUtil.isInteger(sId)) {
 			id = Integer.parseInt(sId);
 		}
 		
@@ -59,14 +59,8 @@ public class RegionAction extends DispatchAction {
 				
 				tree.add(root);				
 			}
-			
 
-			
-			
-			
-			
 			String json = new Gson().toJson(tree);
-			
 			out = response.getWriter();
 			out.write(json.toString());
 			
