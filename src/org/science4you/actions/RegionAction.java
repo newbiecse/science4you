@@ -2,6 +2,7 @@ package org.science4you.actions;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,6 +12,7 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.actions.DispatchAction;
+import org.science4you.helpers.Node;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
@@ -25,48 +27,30 @@ public class RegionAction extends DispatchAction {
 		return mapping.findForward("search");
 	}	
 	
-	public ActionForward search(ActionMapping mapping, ActionForm form,
+	public ActionForward searchGroup(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		
-		return mapping.findForward("search");
-	}
-
-	
-	public ActionForward getUserJson(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response)
-			throws Exception {
-		
-		String sUserId = request.getParameter("id");
-		int userId = 0;
-		
-		if(sUserId != null) {
-			try {
-				userId = Integer.parseInt(sUserId);
-			} catch (Exception e) {
-				System.out.println(e);
-			}
-		}
-		
-//		this.userDao = new UserDAO();
-//		User user = this.userDao.findById(userId);
 		response.setContentType("application/json");
 
 		PrintWriter out = null;
 		
 		try {			
 
-			
 			Gson gson = new Gson();
 			
-//			JsonObject o = new JsonObject();
-//			o.add("user", jsonElement);
+			Node root = new Node(1, "Root node");
+			root.addChild(new Node(2, "Child node 1"));
+			root.addChild(new Node(3, "Child node 2"));
 			
-//			String userJson = gson.toJson(user);
-						
+			List<Node> tree = new ArrayList<Node>();
+			tree.add(root);
+			
+			String json = new Gson().toJson(tree);
+			
 			out = response.getWriter();
+			out.write(json.toString());
 			
-//			out.write(userJson);
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
@@ -75,22 +59,5 @@ public class RegionAction extends DispatchAction {
 		}
 
 		return null;
-	}	
-	
-//	public ActionForward addUserJson(ActionMapping mapping, ActionForm form,
-//			HttpServletRequest request, HttpServletResponse response)
-//			throws Exception {
-//		UserForm userForm = (UserForm) form;
-//		this.userDao = new UserDAO();
-//		
-//		if(userForm.getId() != null) {
-//			if(userForm.getId() > 0) {
-//				this.userDao.update(userForm);
-//			} else {
-//				this.userDao.createUser(userForm);
-//			}
-//		}
-//		
-//		return null;
-//	}
+	}
 }
