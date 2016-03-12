@@ -7,7 +7,8 @@ SpeciesTree = function () {
 		dom.jstree({
 		    'core' : {
 		      'data' : {
-		    	  "url" : "//www.jstree.com/fiddle/?lazy",
+		    	  //"url" : "//www.jstree.com/fiddle/?lazy",
+		    	  "url" : "http://localhost:8080/science4you/region.do?dispatch=searchGroup",
 		    	  "dataType" : "json",
 		    	  "data" : function (node) {
 		    		  return { "id" : node.id };

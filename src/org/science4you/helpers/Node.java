@@ -7,23 +7,23 @@ public class Node {
 	
 	private int id;
 	private String text;
-	private List<Node> children;
+	private List<SubNode> children;
 	
 	public Node(int id, String text) {
 		this.id = id;
 		this.text = text;
-		this.children = new ArrayList<Node>();
+		this.children = new ArrayList<SubNode>();
 	}
 	
-	public Node(int id, String text, List<Node> children) {
+	public Node(int id, String text, List<SubNode> children) {
 		this.id = id;
 		this.text = text;
 		this.children = children;
 	}
 	
-	public void addChild(Node node) {
+	public void addChild(SubNode node) {
 		if (this.children == null) {
-			this.children = new ArrayList<Node>();
+			this.children = new ArrayList<SubNode>();
 		}
 		
 		this.children.add(node);
@@ -45,11 +45,11 @@ public class Node {
 		this.text = text;
 	}
 	
-	public List<Node> getChildren() {
+	public List<SubNode> getChildren() {
 		return children;
 		
 	}
-	public void setChildren(List<Node> children) {
+	public void setChildren(List<SubNode> children) {
 		this.children = children;
 	}
 }
