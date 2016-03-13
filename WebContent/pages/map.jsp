@@ -37,6 +37,7 @@
       <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/platform/common/scripts/select2/css/select2.css">
       <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/platform/common/scripts/jstree/themes/default/style.min.css">
       <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/platform/common/scripts/jstree/jstree.customize.css">
+      <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/platform/common/scripts/mapcomparing/mapcompare.css">
       <!-- End_Style -->
       <!-- Begin_Head -->
       <script language="JavaScript" src="${pageContext.request.contextPath}/platform/common/scripts/authortools.js"></script>
@@ -59,12 +60,14 @@
       -->
       <script language="JavaScript" type="text/javascript" src="${pageContext.request.contextPath}/platform/common/scripts/jstree/jstree.js"></script>
       <script language="JavaScript" type="text/javascript" src="${pageContext.request.contextPath}/platform/common/scripts/jstree/speciestree.js"></script>
+      <script language="JavaScript" type="text/javascript" src="${pageContext.request.contextPath}/platform/common/scripts/mapcomparing/mapcompare.js"></script>
       <script language="JavaScript" type="text/javascript" src="${pageContext.request.contextPath}/platform/common/scripts/jquery/jquery.form.js"></script><script language="JavaScript" type="text/javascript" src="${pageContext.request.contextPath}/platform/common/scripts/colorbox/jquery.colorbox-min.js"></script>
       <script language="JavaScript" type="text/javascript" src="${pageContext.request.contextPath}/platform/common/scripts/select2/js/select2.js"></script>
       <script language="JavaScript" type="text/javascript" src="${pageContext.request.contextPath}/platform/common/scripts/searchmenu.js"></script>
       <script type="text/javascript">
       	$(function() {
       		SpeciesTree.init();
+      		MapCompare.init();
       	})
       </script>
       <script type="text/javascript">
@@ -358,6 +361,7 @@
                      <p class="StructureHint">Tafel der Verbreitungskarten</p>
                   </div>
                   <p></p>
+                  
                   <div class="plate-map-container" >
                      <div class="plate-map-box" style="width:242px; height:203px;" >
                         <div class="plate-map-info-top">Vespa crabro
@@ -365,12 +369,18 @@
                            </span><br/>Hornisse<br/>
                         </div>
                         <div class="plate-map-innerbox" style="width:242px; height:128px;">
-                           <!-- 
-                              <a href="${pageContext.request.contextPath}/platform/mo/nabeat/maps/storedMaps.do?doSpeciesMaps?" target="_self">--><img src="http://s4img.science4you.org/maps/PN91493_76__2000+.jpg" border="0" /><!--</a>-->
+							<img src="http://s4img.science4you.org/maps/PN91493_76__2000+.jpg" border="0" />                        
                         </div>
-                        <div class="plate-map-info-bottom">Stand:2016-02-06 05:25:30.0<br/><span style="color:red;font-size:8pt;font-weight:bold;">Daten zum Teil ungeprüft !</span></div>
+                        <div class="plate-map-info-bottom">
+                        	Stand:2016-02-06 05:25:30.0<br/>
+                        	<span style="color:red;font-size:8pt;font-weight:bold;">Daten zum Teil ungeprüft !</span>
+                        	<span>
+                        		<input class="cbx-compare" type="checkbox" />
+                        	</span>
+                        </div>
                      </div>
                   </div>
+                  
                   <div class="plate-map-container" >
                      <div class="plate-map-box" style="width:242px; height:203px;" >
                         <div class="plate-map-info-top">Rosalia alpina
@@ -381,9 +391,16 @@
                            <!-- 
                               <a href="${pageContext.request.contextPath}/platform/mo/nabeat/maps/storedMaps.do?doSpeciesMaps?" target="_self">--><img src="http://s4img.science4you.org/maps/PN2244_76__2000+.jpg" border="0" /><!--</a>-->
                         </div>
-                        <div class="plate-map-info-bottom">Stand:2016-01-25 05:42:28.0<br/><span style="color:red;font-size:8pt;font-weight:bold;">Daten zum Teil ungeprüft !</span></div>
+                        <div class="plate-map-info-bottom">
+                        	Stand:2016-01-25 05:42:28.0<br/>
+                        	<span style="color:red;font-size:8pt;font-weight:bold;">Daten zum Teil ungeprüft !</span>
+                        	<span>
+                        		<input class="cbx-compare" type="checkbox" />
+                        	</span>                        
+                        </div>
                      </div>
                   </div>
+                  
                   <div class="plate-map-container" >
                      <div class="plate-map-box" style="width:242px; height:203px;" >
                         <div class="plate-map-info-top">Lucanus cervus
@@ -394,9 +411,16 @@
                            <!-- 
                               <a href="${pageContext.request.contextPath}/platform/mo/nabeat/maps/storedMaps.do?doSpeciesMaps?" target="_self">--><img src="http://s4img.science4you.org/maps/PN4775_76__2000+.jpg" border="0" /><!--</a>-->
                         </div>
-                        <div class="plate-map-info-bottom">Stand:2015-12-17 05:17:20.0<br/><span style="color:red;font-size:8pt;font-weight:bold;">Daten zum Teil ungeprüft !</span></div>
+                        <div class="plate-map-info-bottom">
+                        	Stand:2015-12-17 05:17:20.0<br/>
+                        	<span style="color:red;font-size:8pt;font-weight:bold;">Daten zum Teil ungeprüft !</span>
+                        	<span>
+                        		<input class="cbx-compare" type="checkbox" />
+                        	</span>                        
+                        </div>
                      </div>
                   </div>
+                  
                   <div class="plate-map-container" >
                      <div class="plate-map-box" style="width:242px; height:203px;" >
                         <div class="plate-map-info-top">Aeshna cyanea
@@ -407,7 +431,13 @@
                            <!-- 
                               <a href="${pageContext.request.contextPath}/platform/mo/nabeat/maps/storedMaps.do?doSpeciesMaps?" target="_self">--><img src="http://s4img.science4you.org/maps/PN2387_76__2000+.jpg" border="0" /><!--</a>-->
                         </div>
-                        <div class="plate-map-info-bottom">Stand:2016-02-03 04:36:30.0<br/><span style="color:red;font-size:8pt;font-weight:bold;">Daten zum Teil ungeprüft !</span></div>
+                        <div class="plate-map-info-bottom">
+                        	Stand:2016-02-03 04:36:30.0<br/>
+                        	<span style="color:red;font-size:8pt;font-weight:bold;">Daten zum Teil ungeprüft !</span>
+                        	<span>
+                        		<input class="cbx-compare" type="checkbox" />
+                        	</span>                        	
+                        </div>
                      </div>
                   </div>
                   <div class="plate-map-container" >
