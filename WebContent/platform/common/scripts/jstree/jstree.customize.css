@@ -7,11 +7,11 @@
 }
 
 #speciesTree a.jstree-anchor-order {
-	color: #008B8B;
+	color: fuchsia;
 }
 
 #speciesTree a.jstree-anchor-family {
-	color: fuchsia;
+	color: #008B8B;	
 }
 
 #speciesTree a.jstree-anchor-specie {
