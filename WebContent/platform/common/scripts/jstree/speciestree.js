@@ -2,6 +2,24 @@ SpeciesTree = function () {
 	
 	var dom;
 	
+	var idGroup = 2;
+	var idOrder = 21;
+	var idFamily = 211;
+	var idGenus = 2111;
+	
+	var NodeType = {
+		ROOT: 'ROOT',
+		GROUP: 'GROUP',
+		ORDER: 'ORDER',
+		FAMILY: 'FAMILY',
+		SPECIE: 'SPECIE'
+	}
+	
+	var stateLoaded = {
+		'loaded': true,
+		'opened': true
+	}
+	
 	var onLoadTree = function () {
 		
 		dom.jstree({
@@ -31,13 +49,71 @@ SpeciesTree = function () {
 		    			  n[i].li_attr['class'] = 'jstree-node-' + n[i].type.toLowerCase();
 		    			  n[i].a_attr['class'] = 'jstree-anchor-' + n[i].type.toLowerCase();		    					  
 		    			  
+    					  switch(n[i].data['type']) {
+    					  
+    					  case NodeType.GROUP:
+    						  if (n[i].id == idGroup) {
+    							  n[i].state = stateLoaded;
+    						  }
+    						  break;
+    						  
+    					  case NodeType.ORDER:
+    						  if (n[i].id == idOrder) {
+    							  n[i].state = stateLoaded;
+    						  }
+    						  break;
+    						  
+    					  case NodeType.FAMILY:
+    						  if (n[i].id == idFamily) {
+    							  n[i].state = stateLoaded;
+    						  }
+    						  break;
+    						  
+    					  case NodeType.GENUS:
+    						  if (n[i].id == idGenus) {
+    							  n[i].state = stateLoaded;
+    						  }
+    						  break;		    						  
+    						  
+    					  }		    			  
+		    			  
 		    			  if ($.isArray(n[i].children)) {
 		    				  
 		    				  n[i].children.forEach(function(child){
 
 		    					  child.data['type'] = child.type;
 		    					  child.li_attr['class'] = 'jstree-node-' + child.type.toLowerCase();
-		    					  child.a_attr['class'] = 'jstree-anchor-' + child.type.toLowerCase();		    					  
+		    					  child.a_attr['class'] = 'jstree-anchor-' + child.type.toLowerCase();
+		    					  
+		    					  switch(child.data['type']) {
+		    					  
+		    					  case NodeType.GROUP:
+		    						  if (child.id == idGroup) {
+		    							  child.state = stateLoaded;
+		    						  }
+		    						  break;
+		    						  
+		    					  case NodeType.ORDER:
+		    						  if (child.id == idOrder) {
+		    							  child.state = stateLoaded;
+		    						  }
+		    						  break;
+		    						  
+		    					  case NodeType.FAMILY:
+		    						  if (child.id == idFamily) {
+		    							  child.state = stateLoaded;
+		    						  }
+		    						  break;
+		    						  
+		    					  case NodeType.GENUS:
+		    						  if (child.id == idGenus) {
+		    							  child.state = stateLoaded;
+		    						  }
+		    						  break;		    						  
+		    						  
+		    					  }
+		    					  
+		    					  
 		    				  })
 		    				  
 		    			  }
@@ -56,8 +132,16 @@ SpeciesTree = function () {
 	var onSelected = function () {
 		
 		dom.on('changed.jstree', function (e, data) {
-			  console.log(data.instance.get_selected(true)[0].text);
-			  console.log(data.instance.get_node(data.selected[0]).text);
+			  var node = data.instance.get_selected(true)[0];
+			  
+			  if (node.data.type !== 'undefined') {
+				  switch(node.data.type) {
+					  case NodeType.SPECIE:
+						  
+						  alert('navigation to url')
+						  break;
+				  }
+			  }
 		});
 	}
 	

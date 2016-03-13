@@ -51,7 +51,7 @@ public class RegionAction extends DispatchAction {
 			String json = "";
 			
 			if (id == 0) {
-				Node root = new Node(1, "Root node", NodeType.ROOT);
+				Node root = new Node(1, "Select specie", NodeType.ROOT);
 				root.addChild(new SubNode(2, "Group 1", NodeType.GROUP, true));
 				root.addChild(new SubNode(3, "Group 2", NodeType.GROUP, true));	
 				
