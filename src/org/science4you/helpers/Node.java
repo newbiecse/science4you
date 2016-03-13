@@ -9,15 +9,23 @@ public class Node {
 	private String text;
 	private List<SubNode> children;
 	
-	private String icon = "+";
+//	private String icon = "+";
+	private Object data = new Object();
 	private Object li_attr = new Object();
-	private Object a_attr = new Object();	
+	private Object a_attr = new Object();
+	private NodeType type;
 	
 	public Node(int id, String text) {
 		this.id = id;
 		this.text = text;
 		this.children = new ArrayList<SubNode>();
 	}
+	
+	public Node(int id, String text, NodeType type) {
+		this.id = id;
+		this.text = text;
+		this.type = type;
+	}	
 	
 	public Node(int id, String text, List<SubNode> children) {
 		this.id = id;

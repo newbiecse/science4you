@@ -1,0 +1,19 @@
+.jstree-themeicon {
+	display: none !important
+}
+
+#speciesTree a.group {
+	
+}
+
+#speciesTree a.order {
+	color: #008B8B;
+}
+
+#speciesTree a.family {
+	color: fuchsia;
+}
+
+#speciesTree a.specie {
+	
+}

@@ -36,6 +36,7 @@
       <!-- select2 default -->
       <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/platform/common/scripts/select2/css/select2.css">
       <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/platform/common/scripts/jstree/themes/default/style.min.css">
+      <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/platform/common/scripts/jstree/jstree.customize.css">
       <!-- End_Style -->
       <!-- Begin_Head -->
       <script language="JavaScript" src="${pageContext.request.contextPath}/platform/common/scripts/authortools.js"></script>

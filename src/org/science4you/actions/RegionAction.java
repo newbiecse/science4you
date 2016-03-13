@@ -13,6 +13,7 @@ import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.actions.DispatchAction;
 import org.science4you.helpers.Node;
+import org.science4you.helpers.NodeType;
 import org.science4you.helpers.SubNode;
 import org.science4you.utils.StringUtil;
 
@@ -47,15 +48,15 @@ public class RegionAction extends DispatchAction {
 			
 			if (id == 0) {
 				Node root = new Node(1, "Root node");
-				root.addChild(new SubNode(2, "Child node 1", true));
-				root.addChild(new SubNode(3, "Child node 2"));	
+				root.addChild(new SubNode(2, "Child node 1", NodeType.GROUP, true));
+				root.addChild(new SubNode(3, "Child node 2", NodeType.GROUP, false));	
 				
 				tree.add(root);
 			} else {
 				
 				Node root = new Node(id * 10, String.format("Child node %d", id * 10));
-				root.addChild(new SubNode(id * 10 + 1, String.format("Child node %d", id * 10 + 1), true));
-				root.addChild(new SubNode(id * 10 + 2, String.format("Child node %d", id * 10 + 2)));	
+				root.addChild(new SubNode(id * 10 + 1, String.format("Child node %d", id * 10 + 1), NodeType.ORDER, true));
+				root.addChild(new SubNode(id * 10 + 2, String.format("Child node %d", id * 10 + 2), NodeType.ORDER, false));	
 				
 				tree.add(root);				
 			}

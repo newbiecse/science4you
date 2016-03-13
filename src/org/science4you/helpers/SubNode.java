@@ -6,18 +6,21 @@ public class SubNode {
 	private String text;
 	private Boolean children;
 	
-	private String icon = "+";
+//	private String icon = "+";
+	private Object data = new Object();
 	private Object li_attr = new Object();
 	private Object a_attr = new Object();
+	private NodeType type;
 	
 	public SubNode(int id, String text) {
 		this.id = id;
 		this.text = text;
 	}
 	
-	public SubNode(int id, String text, Boolean children) {
+	public SubNode(int id, String text, NodeType type, Boolean children) {
 		this.id = id;
 		this.text = text;
+		this.type = type;
 		this.children = children;
 	}
 	
