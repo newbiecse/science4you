@@ -2,6 +2,8 @@ MapCompare = function () {
 	
 	var hash = {};
 	
+	var speciesContainer;
+	
 	var onCheck = function ($ele) {
 		
 		var boxContainer = $ele.closest('.plate-map-container');
@@ -30,7 +32,7 @@ MapCompare = function () {
 	}
 	
 	var onUncheck = function($ele) {
-		var specieId = $ele.data('specieId');
+		var specieId = $ele.data('specieid');
 		delete hash[specieId];
 	}
 	
@@ -44,10 +46,13 @@ MapCompare = function () {
 				if($this.is(':checked')) {
 					onCheck($this);
 				} else {
-					onUnheck($this);
+					onUncheck($this);
 				}
 				
 			});
+			
+			speciesContainer = $('#speciesContainer');
+			
 			
 		}
 	

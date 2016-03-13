@@ -124,7 +124,7 @@ SpeciesTree = function () {
 				  switch(node.data.type) {
 					  case NodeType.SPECIE:
 						  
-						  alert('navigation to url')
+//						  alert('navigation to url')
 						  break;
 				  }
 			  }

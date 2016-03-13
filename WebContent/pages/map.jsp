@@ -351,8 +351,22 @@
             <div id="main"
                class="twoCol">
                <!-- Begin_pageactions -->
-               <div id="pageaction"
-                  class="twoCol"><a name="#top" id="top"></a></div>
+               <div id="pageaction" class="twoCol">
+               
+               	  <a name="#top" id="top"></a>
+               
+                  <div id="speciesContainer">
+                  		<span class="specieBox" data-specieid="">                  			
+                  			<span class="speciesName">Vespa crabro 2000+</span>
+                  			<span class="deleteSpecie">x</span>
+                  		</span>
+                  		
+                  		<div class="compareAction">
+                  			<button id="btnCompare">Compare</button>
+                  		</div>
+                  </div>               
+                  
+               </div>
                <!-- End_pageactions -->
                <div id="content"
                   class="twoCol">
