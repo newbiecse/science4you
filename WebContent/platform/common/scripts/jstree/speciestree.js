@@ -6,12 +6,14 @@ SpeciesTree = function () {
 	var idOrder = 21;
 	var idFamily = 211;
 	var idGenus = 2111;
+	var idSpecie = 21111;
 	
 	var NodeType = {
 		ROOT: 'ROOT',
 		GROUP: 'GROUP',
 		ORDER: 'ORDER',
 		FAMILY: 'FAMILY',
+		GENUS: 'GENUS',
 		SPECIE: 'SPECIE'
 	}
 	
@@ -50,6 +52,10 @@ SpeciesTree = function () {
 		    			  n[i].a_attr['class'] = 'jstree-anchor-' + n[i].type.toLowerCase();		    					  
 		    			  
     					  switch(n[i].data['type']) {
+
+    					  case NodeType.ROOT:
+							  n[i].state = stateLoaded;
+    						  break;    					  
     					  
     					  case NodeType.GROUP:
     						  if (n[i].id == idGroup) {
@@ -75,6 +81,13 @@ SpeciesTree = function () {
     						  }
     						  break;		    						  
     						  
+    					  case NodeType.SPECIE:
+    						  if (n[i].id == idSpecie) {
+    							  n[i].state = {
+									  selected: true
+    							  };
+    						  }
+    						  break;    						  
     					  }		    			  
 		    			  
 		    			  if ($.isArray(n[i].children)) {
@@ -108,6 +121,12 @@ SpeciesTree = function () {
 		    					  case NodeType.GENUS:
 		    						  if (child.id == idGenus) {
 		    							  child.state = stateLoaded;
+		    						  }
+		    						  break;
+		    						  
+		    					  case NodeType.SPECIE:
+		    						  if (n[i].id == idSpecie) {
+		    							  n[i].state = stateLoaded;
 		    						  }
 		    						  break;		    						  
 		    						  
