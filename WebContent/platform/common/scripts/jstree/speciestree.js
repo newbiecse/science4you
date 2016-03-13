@@ -55,6 +55,19 @@ SpeciesTree = function () {
 
     					  case NodeType.ROOT:
 							  n[i].state = stateLoaded;
+							  
+			    			  if ($.isArray(n[i].children)) {
+		    				  
+			    				  n[i].children.forEach(function(child){
+	
+			    					  child.data['type'] = child.type;
+			    					  child.li_attr['class'] = 'jstree-node-' + child.type.toLowerCase();
+			    					  child.a_attr['class'] = 'jstree-anchor-' + child.type.toLowerCase();
+			    					  
+			    					  child.state = stateLoaded;
+			    				  })
+			    			  }
+							  
     						  break;    					  
     					  
     					  case NodeType.GROUP:
@@ -90,52 +103,6 @@ SpeciesTree = function () {
     						  break;    						  
     					  }		    			  
 		    			  
-		    			  if ($.isArray(n[i].children)) {
-		    				  
-		    				  n[i].children.forEach(function(child){
-
-		    					  child.data['type'] = child.type;
-		    					  child.li_attr['class'] = 'jstree-node-' + child.type.toLowerCase();
-		    					  child.a_attr['class'] = 'jstree-anchor-' + child.type.toLowerCase();
-		    					  
-		    					  switch(child.data['type']) {
-		    					  
-		    					  case NodeType.GROUP:
-		    						  if (child.id == idGroup) {
-		    							  child.state = stateLoaded;
-		    						  }
-		    						  break;
-		    						  
-		    					  case NodeType.ORDER:
-		    						  if (child.id == idOrder) {
-		    							  child.state = stateLoaded;
-		    						  }
-		    						  break;
-		    						  
-		    					  case NodeType.FAMILY:
-		    						  if (child.id == idFamily) {
-		    							  child.state = stateLoaded;
-		    						  }
-		    						  break;
-		    						  
-		    					  case NodeType.GENUS:
-		    						  if (child.id == idGenus) {
-		    							  child.state = stateLoaded;
-		    						  }
-		    						  break;
-		    						  
-		    					  case NodeType.SPECIE:
-		    						  if (n[i].id == idSpecie) {
-		    							  n[i].state = stateLoaded;
-		    						  }
-		    						  break;		    						  
-		    						  
-		    					  }
-		    					  
-		    					  
-		    				  })
-		    				  
-		    			  }
 		    		  }
 		    		  
 		    		  return n;                 
