@@ -356,8 +356,8 @@
                	  <a name="#top" id="top"></a>
                
                   <div id="speciesContainer">
-                  		<span class="specieBox" data-specieid="">                  			
-                  			<span class="speciesName">Vespa crabro 2000+</span>
+                  		<span class="specieBox box-clone" data-specieid="-1">                  			
+                  			<span class="speciesName"></span>
                   			<span class="deleteSpecie">x</span>
                   		</span>
                   		

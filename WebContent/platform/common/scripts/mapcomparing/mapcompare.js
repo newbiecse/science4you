@@ -2,7 +2,7 @@ MapCompare = function () {
 	
 	var hash = {};
 	
-	var speciesContainer;
+	var container;
 	
 	var onCheck = function ($ele) {
 		
@@ -29,19 +29,49 @@ MapCompare = function () {
 		$ele.attr('data-specieId', specieId);
 		
 		hash[specieId] = o;
+		
+		handleShowContainer();
+		
+		addNode(specieId);
 	}
 	
 	var onUncheck = function($ele) {
 		var specieId = $ele.data('specieid');
 		delete hash[specieId];
+		
+		removeNode(specieId);
+		
+		handleShowContainer();
 	}
+	
+	var handleShowContainer = function() {
+		
+		if (Object.keys(hash).length == 0) {
+			container.hide();
+		} else {
+			container.show();
+		}
+	}
+	
+	var addNode = function(specieId) {
+		var eleClone = container.find('.box-clone:first').clone();
+		
+		eleClone.find('.speciesName').text(hash[specieId].name);
+		eleClone.attr('data-specieid', specieId);
+		eleClone.removeClass('box-clone');
+		container.append(eleClone);
+	}
+	
+	var removeNode = function(specieId) {
+		container.find('.specieBox[data-specieid=' + specieId + ']').remove();
+	}	
 	
 	return {
 		init: function() {
 			
 			$('.plate-map-container').on('change', '.cbx-compare', function(){
 				
-				$this = $(this);
+				var $this = $(this);
 				
 				if($this.is(':checked')) {
 					onCheck($this);
@@ -51,7 +81,16 @@ MapCompare = function () {
 				
 			});
 			
-			speciesContainer = $('#speciesContainer');
+			container = $('#speciesContainer');
+			
+			container.on('click', '.specieBox', function(){
+				
+				var $this = $(this);
+				
+				onUncheck($this);
+				
+				$('.cbx-compare[data-specieid=' + $this.data('specieid') + ']').prop('checked', false);
+			});
 			
 			
 		}
