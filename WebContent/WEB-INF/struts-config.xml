@@ -5,6 +5,7 @@
 
 	<form-beans>
 		<form-bean name="regionForm" type="org.science4you.forms.RegionForm" />
+		<form-bean name="specieForm" type="org.science4you.forms.SpecieForm" />
 	</form-beans>
 
 <!-- 
@@ -15,7 +16,7 @@
 	 -->
 
 	<action-mappings>
-		<action path="/region" type="org.science4you.actions.RegionAction" parameter="dispatch" name="regionForm">
+		<action path="/region" type="org.science4you.actions.RegionAction" parameter="dispatch" name="specieForm">
 			<forward name="search" path="/pages/map.jsp" />
 		</action>
 	</action-mappings>

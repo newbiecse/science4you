@@ -12,6 +12,7 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.actions.DispatchAction;
+import org.science4you.forms.SpecieForm;
 import org.science4you.helpers.Node;
 import org.science4you.helpers.NodeType;
 import org.science4you.helpers.SubNode;
@@ -47,18 +48,45 @@ public class RegionAction extends DispatchAction {
 			List<Node> tree = new ArrayList<Node>();
 			
 			if (id == 0) {
-				Node root = new Node(1, "Root node");
-				root.addChild(new SubNode(2, "Child node 1", NodeType.GROUP, true));
-				root.addChild(new SubNode(3, "Child node 2", NodeType.GROUP, false));	
+				Node root = new Node(1, "Root node", NodeType.ROOT);
+				root.addChild(new SubNode(2, "Group 1", NodeType.GROUP, true));
+				root.addChild(new SubNode(3, "Group 2", NodeType.GROUP, false));	
 				
 				tree.add(root);
 			} else {
 				
-				Node root = new Node(id * 10, String.format("Child node %d", id * 10));
-				root.addChild(new SubNode(id * 10 + 1, String.format("Child node %d", id * 10 + 1), NodeType.ORDER, true));
-				root.addChild(new SubNode(id * 10 + 2, String.format("Child node %d", id * 10 + 2), NodeType.ORDER, false));	
+				SpecieForm specieForm = (SpecieForm) form;
+				NodeType type = NodeType.valueOf(specieForm.getType());
 				
-				tree.add(root);				
+				if (NodeType.GROUP == type) {
+
+					Node groupNode = new Node(id * 10, String.format("Group %d", id * 10), NodeType.ORDER);
+					groupNode.addChild(new SubNode(id * 10 + 1, String.format("Order %d", id * 10 + 1), NodeType.FAMILY, true));
+					groupNode.addChild(new SubNode(id * 10 + 2, String.format("Order %d", id * 10 + 2), NodeType.FAMILY, false));
+					
+					tree.add(groupNode);
+				} else if (NodeType.ORDER == type) {
+
+					Node orderNode = new Node(id * 10, String.format("Order %d", id * 10), NodeType.FAMILY);
+					orderNode.addChild(new SubNode(id * 10 + 1, String.format("Family %d", id * 10 + 1), NodeType.GENUS, true));
+					orderNode.addChild(new SubNode(id * 10 + 2, String.format("Family %d", id * 10 + 2), NodeType.FAMILY, false));
+					
+					tree.add(orderNode);
+				} else if (NodeType.FAMILY == type) {
+
+					Node familyNode = new Node(id * 10, String.format("Family %d", id * 10), NodeType.GENUS);
+					familyNode.addChild(new SubNode(id * 10 + 1, String.format("Genus %d", id * 10 + 1), NodeType.SPECIE, true));
+					familyNode.addChild(new SubNode(id * 10 + 2, String.format("Genus %d", id * 10 + 2), NodeType.SPECIE, false));
+					
+					tree.add(familyNode);
+				} else if (NodeType.GENUS == type) {
+
+					Node genusNode = new Node(id * 10, String.format("Genus %d", id * 10), NodeType.GENUS);
+					genusNode.addChild(new SubNode(id * 10 + 1, String.format("Specie %d", id * 10 + 1), NodeType.SPECIE, true));
+					genusNode.addChild(new SubNode(id * 10 + 2, String.format("Specie %d", id * 10 + 2), NodeType.SPECIE, false));
+					
+					tree.add(genusNode);
+				} 
 			}
 
 			String json = new Gson().toJson(tree);

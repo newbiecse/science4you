@@ -2,18 +2,18 @@
 	display: none !important
 }
 
-#speciesTree a.group {
-	
+#speciesTree a.jstree-anchor-group {
+	color: red;
 }
 
-#speciesTree a.order {
+#speciesTree a.jstree-anchor-order {
 	color: #008B8B;
 }
 
-#speciesTree a.family {
+#speciesTree a.jstree-anchor-family {
 	color: fuchsia;
 }
 
-#speciesTree a.specie {
-	
+#speciesTree a.jstree-anchor-specie {
+	color: blue;
 }

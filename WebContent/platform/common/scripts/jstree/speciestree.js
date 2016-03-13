@@ -7,23 +7,17 @@ SpeciesTree = function () {
 		dom.jstree({
 		    'core' : {
 		      'data' : {
-		    	  //'url' : 'http://localhost:8080/science4you/region.do?dispatch=searchGroup',
 		    	  'url': function(node) {
-		    		  
-		    		  console.log(node);
 		    		  
 		    		  if (node.id === '#') {
 		    			  return 'http://localhost:8080/science4you/region.do?dispatch=searchGroup';
 		    		  } else {
 		    			  
-		    			  var o1 = dom.jstree(true).get_node(node.id);
-		    			  console.log(o1);
+		    			  var url = 'http://localhost:8080/science4you/region.do?dispatch=searchGroup';
+		    			  url += '&type=' + node.data.type;
 		    			  
-		    			  var o2 = dom.jstree(true).get_json(node.id);
-		    			  console.log(o2);
+		    			  return url;
 		    		  }
-		    		  
-		    		  return 'http://localhost:8080/science4you/region.do?dispatch=searchGroup';
 		    	  },
 		    	  'dataType': 'json',
 		    	  'data': function (node) {
@@ -33,21 +27,17 @@ SpeciesTree = function () {
 		
 		    		  for(var i = 0; i < n.length; i++) {
 
-		    			  n[i].li_attr['class'] = 'family-name';
-		    			  n[i].a_attr['class'] = 'group';
-		    			  n[i].a_attr['type'] = 'group';
-		    			  n[i].a_attr['data-type'] = 'group';
-		    			  n[i].data['type'] = 'group';
+		    			  n[i].data['type'] = n[i].type;
+		    			  n[i].li_attr['class'] = 'jstree-node-' + n[i].type.toLowerCase();
+		    			  n[i].a_attr['class'] = 'jstree-anchor-' + n[i].type.toLowerCase();		    					  
 		    			  
 		    			  if ($.isArray(n[i].children)) {
 		    				  
 		    				  n[i].children.forEach(function(child){
 
-		    					  child.li_attr['class'] = 'order-name';
-		    					  child.a_attr['class'] = 'order';
-		    					  child.a_attr['type'] = 'order';
-		    					  child.a_attr['data-type'] = child.type;
 		    					  child.data['type'] = child.type;
+		    					  child.li_attr['class'] = 'jstree-node-' + child.type.toLowerCase();
+		    					  child.a_attr['class'] = 'jstree-anchor-' + child.type.toLowerCase();		    					  
 		    				  })
 		    				  
 		    			  }
