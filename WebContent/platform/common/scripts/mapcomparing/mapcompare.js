@@ -3,6 +3,7 @@ MapCompare = function () {
 	var hash = {};
 	
 	var container;
+	var btnCompare;
 	
 	var onCheck = function ($ele) {
 		
@@ -51,6 +52,12 @@ MapCompare = function () {
 		} else {
 			container.show();
 		}
+		
+		if (Object.keys(hash).length > 1) {
+			btnCompare.show();
+		} else {
+			btnCompare.hide();
+		}
 	}
 	
 	var addNode = function(specieId) {
@@ -82,6 +89,7 @@ MapCompare = function () {
 			});
 			
 			container = $('#speciesContainer');
+			btnCompare = container.find('#btnCompare');
 			
 			container.on('click', '.specieBox', function(){
 				

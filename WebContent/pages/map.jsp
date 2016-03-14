@@ -59,14 +59,22 @@
       <script language="JavaScript" type="text/javascript" src="${pageContext.request.contextPath}/platform/common/scripts/jquery/jquery.jstree.js"></script>
       -->
       <script language="JavaScript" type="text/javascript" src="${pageContext.request.contextPath}/platform/common/scripts/jstree/jstree.js"></script>
-      <script language="JavaScript" type="text/javascript" src="${pageContext.request.contextPath}/platform/common/scripts/jstree/speciestree.js"></script>
-      <script language="JavaScript" type="text/javascript" src="${pageContext.request.contextPath}/platform/common/scripts/mapcomparing/mapcompare.js"></script>
       <script language="JavaScript" type="text/javascript" src="${pageContext.request.contextPath}/platform/common/scripts/jquery/jquery.form.js"></script><script language="JavaScript" type="text/javascript" src="${pageContext.request.contextPath}/platform/common/scripts/colorbox/jquery.colorbox-min.js"></script>
       <script language="JavaScript" type="text/javascript" src="${pageContext.request.contextPath}/platform/common/scripts/select2/js/select2.js"></script>
+      <script language="JavaScript" type="text/javascript" src="${pageContext.request.contextPath}/platform/common/scripts/jstree/speciestree.js"></script>
+      <script language="JavaScript" type="text/javascript" src="${pageContext.request.contextPath}/platform/common/scripts/mapcomparing/mapcompare.js"></script>      
       <script language="JavaScript" type="text/javascript" src="${pageContext.request.contextPath}/platform/common/scripts/searchmenu.js"></script>
       <script type="text/javascript">
       	$(function() {
-      		SpeciesTree.init();
+      		
+      		SpeciesTree.init({
+      			'idGroup': 2,
+      			'idOrder': 21,
+      			'idFamily': 212,
+      			'idGenus': 2122,
+      			'idSpecie': 21222
+      		});
+      		
       		MapCompare.init();
       	})
       </script>

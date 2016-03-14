@@ -2,11 +2,34 @@ SpeciesTree = function () {
 	
 	var dom;
 	
-	var idGroup = 2;
-	var idOrder = 21;
-	var idFamily = 211;
-	var idGenus = 2111;
-	var idSpecie = 21111;
+	var idGroup = null;//2;
+	var idOrder = null;//21;
+	var idFamily = null;//211;
+	var idGenus = null;//2111;
+	var idSpecie = null;//21111;
+	
+	var initValues = function(options) {
+		
+		if (options.idGroup !== undefined) {
+			idGroup = options.idGroup;
+		}
+		
+		if (options.idOrder !== undefined) {
+			idOrder = options.idOrder;
+		}
+		
+		if (options.idFamily !== undefined) {
+			idFamily = options.idFamily;
+		}
+		
+		if (options.idGenus !== undefined) {
+			idGenus = options.idGenus;
+		}
+		
+		if (options.idSpecie !== undefined) {
+			idSpecie = options.idSpecie;
+		}		
+	}
 	
 	var NodeType = {
 		ROOT: 'ROOT',
@@ -64,7 +87,10 @@ SpeciesTree = function () {
 			    					  child.li_attr['class'] = 'jstree-node-' + child.type.toLowerCase();
 			    					  child.a_attr['class'] = 'jstree-anchor-' + child.type.toLowerCase();
 			    					  
-			    					  child.state = stateLoaded;
+			    					  if (child.id == idGroup) {
+			    						  child.state = stateLoaded;  
+			    					  }
+			    					  
 			    				  })
 			    			  }
 							  
@@ -132,9 +158,11 @@ SpeciesTree = function () {
 	}
 	
 	return {
-		init: function () {
+		init: function (options) {
 			
 			dom = $('#speciesTree');
+			
+			initValues(options);
 			
 			onLoadTree();
 			
