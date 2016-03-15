@@ -1186,5 +1186,8 @@
          <!-- End_footer -->
       </div>
       <!-- End_wrapper -->
+            
+      <jsp:include page="/pages/popup.jsp" />      
+      
    </body>
 </html>

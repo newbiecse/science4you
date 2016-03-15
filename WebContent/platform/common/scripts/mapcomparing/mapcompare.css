@@ -52,3 +52,17 @@
 	cursor: pointer;
 	display: none;
 }
+
+#popupCompare {
+	/*display: none;*/
+}
+
+#popupCompareContent {
+	background-color: #fff;
+	padding:10px;
+}
+
+#popupCompareContent .one-box {
+	width: 50% !important;
+	float: left !important;
+}

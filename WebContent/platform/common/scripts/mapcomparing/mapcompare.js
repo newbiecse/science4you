@@ -71,7 +71,15 @@ MapCompare = function () {
 	
 	var removeNode = function(specieId) {
 		container.find('.specieBox[data-specieid=' + specieId + ']').remove();
-	}	
+	}
+	
+	var openPopup = function() {
+		$.colorbox({
+			initialWidth: 600,
+			initialHeight: 500,
+			html: $('#popupCompare').html()
+		});
+	}
 	
 	return {
 		init: function() {
@@ -100,6 +108,10 @@ MapCompare = function () {
 				$('.cbx-compare[data-specieid=' + $this.data('specieid') + ']').prop('checked', false);
 			});
 			
+			btnCompare.on('click', function(){
+				
+				openPopup();
+			});
 			
 		}
 	
