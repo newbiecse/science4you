@@ -2,8 +2,7 @@ MapCompare = function () {
 	
 	var hash = {};
 	
-	var container;
-	var btnCompare;
+	var container, btnCompare, btnNext, btnPrev;
 	
 	var onCheck = function ($ele) {
 		
@@ -72,11 +71,37 @@ MapCompare = function () {
 	var removeNode = function(specieId) {
 		container.find('.specieBox[data-specieid=' + specieId + ']').remove();
 	}
+
+	var renderUIPopup = function () {
+		
+		var keys = Object.keys(hash);
+		
+		var first = hash[keys[0]];
+		var second = hash[keys[1]];
+		
+	}
+	
+	var bindEventNextPrev = function () {
+		
+		btnNext.on('click', function() {
+			renderUIPopup();
+		});
+		
+		btnPrev.on('click', function() {
+			renderUIPopup();
+		});		
+	}
+	
+	var onNext = function () {
+		
+		renderUIPopup();
+		
+	}
 	
 	var openPopup = function() {
 		$.colorbox({
-			initialWidth: 600,
-			initialHeight: 500,
+//			initialWidth: 600,
+//			initialHeight: 500,
 			html: $('#popupCompare').html()
 		});
 	}
@@ -98,6 +123,10 @@ MapCompare = function () {
 			
 			container = $('#speciesContainer');
 			btnCompare = container.find('#btnCompare');
+			btnNext = $('#btn-next');
+			btnPrev = $('#btn-prev');
+			
+			bindEventNextPrev();
 			
 			container.on('click', '.specieBox', function(){
 				
@@ -112,6 +141,14 @@ MapCompare = function () {
 				
 				openPopup();
 			});
+			
+			$(".group1").colorbox({
+				rel:'group1',
+				  transition: "elastic",
+				  close: "Close",				
+				inline:true, 
+//				href:$(this).attr('href')
+				});
 			
 		}
 	

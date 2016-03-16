@@ -54,7 +54,7 @@
 }
 
 #popupCompare {
-	/*display: none;*/
+	display: none;
 }
 
 #popupCompareContent {
@@ -63,6 +63,20 @@
 }
 
 #popupCompareContent .one-box {
-	width: 50% !important;
-	float: left !important;
+	width: 49%;
+	float: left;
+}
+
+.left-content {
+	/*border: 1px solid red;*/
+	padding-right: 2px;
+}
+
+.right-content {
+	/*border: 1px solid red;*/
+	padding-left: 2px;
+}
+
+#btn-next, #btn-prev {
+	cursor: pointer;
 }
