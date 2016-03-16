@@ -142,13 +142,22 @@ MapCompare = function () {
 				openPopup();
 			});
 			
-			$(".group1").colorbox({
-				rel:'group1',
-				  transition: "elastic",
-				  close: "Close",				
-				inline:true, 
-//				href:$(this).attr('href')
-				});
+//			$(".group1").colorbox({
+//				rel:'group1',
+//				  transition: "elastic",
+//				  close: "Close",				
+//				inline:true, 
+////				href:$(this).attr('href')
+//				});
+			
+		    var $group = $('.inline').colorbox({inline:true, rel:'inline', href: function(){
+	            return $(this).children();
+		    }});
+		    
+		      $('#open').on('click', function(e){
+		            e.preventDefault();
+		            $group.eq(0).click();
+		      });			
 			
 		}
 	

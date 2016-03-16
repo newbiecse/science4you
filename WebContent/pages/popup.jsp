@@ -21,30 +21,26 @@
 	</div>
 </div>
 
-<p><a class="group1" href="#box1">Grouped Photo 1</a></p>
-<p><a class="group1" href="#box2">Grouped Photo 2</a></p>
-<p><a class="group1" href="#box3">Grouped Photo 3</a></p>
-
-<div id="box1">
-  Some text in box 1 Some text in box 1
-  Some text in box 1
-  Some text in box 1
-  Some text in box 1
-  Some text in box 1
+<a href='#' id='open'>Open inline group</a>
+<div style='display:none'>
+    <div class='inline'>
+        <div style='padding:10px; background:#fff;'>
+            <p><strong>This content comes from a hidden element on this page.</strong></p>
+        </div>
+    </div>
+    <div class='inline'>
+        <div style='padding:10px; background:#fff;'>
+            <p><strong>2. This content comes from a hidden element on this page.</strong></p>
+        </div>
+    </div>
+    <div class='inline'>
+        <div style='padding:10px; background:#fff;'>
+            <p><strong>3. This content comes from a hidden element on this page.</strong></p>
+        </div>
+    </div>
+    <div class='inline'>
+        <div style='padding:10px; background:#fff;'>
+            <p><strong>4. This content comes from a hidden element on this page.</strong></p>
+        </div>
+    </div>
 </div>
-
-<div id="box2">
-  Some text in box 2
-  Some text in box 2
-  Some text in box 2
-  Some text in box 2
-  Some text in box 2        
-</div>
-
-<div id="box3">
-  Some text in box 3
-  Some text in box 3
-  Some text in box 3
-  Some text in box 3
-  Some text in box 3                
-</div>      

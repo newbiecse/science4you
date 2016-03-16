@@ -80,3 +80,7 @@
 #btn-next, #btn-prev {
 	cursor: pointer;
 }
+
+.group1, .box {
+	display: none;
+}
