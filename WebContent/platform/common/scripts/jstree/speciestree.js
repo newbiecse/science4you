@@ -9,24 +9,13 @@ SpeciesTree = function () {
 	var idSpecie = null;//21111;
 	
 	var initValues = function(options) {
-		
-		if (options.idGroup !== undefined) {
-			idGroup = options.idGroup;
-		}
-		
-		if (options.idOrder !== undefined) {
-			idOrder = options.idOrder;
-		}
-		
-		if (options.idFamily !== undefined) {
-			idFamily = options.idFamily;
-		}
-		
-		if (options.idGenus !== undefined) {
-			idGenus = options.idGenus;
-		}
-		
+				
 		if (options.idSpecie !== undefined) {
+			
+			idGroup = options.idGroup;
+			idOrder = options.idOrder;
+			idFamily = options.idFamily;
+			idGenus = options.idGenus;
 			idSpecie = options.idSpecie;
 		}		
 	}
@@ -89,7 +78,7 @@ SpeciesTree = function () {
 			    					  child.li_attr['class'] = 'jstree-node-' + child.type.toLowerCase();
 			    					  child.a_attr['class'] = 'jstree-anchor-' + child.type.toLowerCase();
 			    					  
-			    					  if (child.id == idGroup) {
+			    					  if (child.text == idGroup) {
 			    						  child.state = stateLoaded;  
 			    					  }
 			    					  
@@ -99,7 +88,7 @@ SpeciesTree = function () {
     						  break;    					  
     					  
     					  case NodeType.GROUP:
-    						  if (n[i].id == idGroup) {
+    						  if (n[i].text == idGroup) {
     							  n[i].state = stateLoaded;
     						  }
     						  break;
@@ -117,7 +106,7 @@ SpeciesTree = function () {
     						  break;
     						  
     					  case NodeType.GENUS:
-    						  if (n[i].id == idGenus) {
+    						  if (n[i].text == idGenus) {
     							  n[i].state = stateLoaded;
     						  }
     						  break;		    						  

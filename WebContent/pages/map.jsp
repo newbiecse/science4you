@@ -68,11 +68,11 @@
       	$(function() {
       		
       		SpeciesTree.init({
-      			'idGroup': 2,
+      			'idGroup': 'Entenvögel',
       			'idOrder': 21,
       			'idFamily': 212,
-      			'idGenus': 2122,
-      			'idSpecie': 21222
+      			'idGenus': 'Aix',
+      			'idSpecie': 48679
       		});
       		
       		MapCompare.init();

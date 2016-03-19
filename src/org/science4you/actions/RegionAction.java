@@ -31,6 +31,7 @@ public class RegionAction extends DispatchAction {
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		
+		
 		return mapping.findForward("search");
 	}	
 	
@@ -71,8 +72,8 @@ public class RegionAction extends DispatchAction {
 		try {			
 			List<Node> tree = new ArrayList<Node>();
 			List<SubNode> tree1 = new ArrayList<SubNode>();
-			String json = "";
-					
+			String json = "";					
+			
 			if (NodeType.ROOT == type) {
 				Node root = new Node(1, "Select specie", NodeType.ROOT);
 				
@@ -122,7 +123,7 @@ public class RegionAction extends DispatchAction {
 			} else if (NodeType.GENUS == type) {
 
 				query = String.format(
-				"select DISTINCT n.fullname text " +
+				"select n.ptname_id id, n.fullname text " +
 				"from vims2you.S4projecttaxa pt, vims2you.s4ptname n " + 
 				"where pt.project_id = 503 and pt.ptname_id = n.ptname_id and n.gattung = '%s' " +
 				"order by text", specieForm.getText());
@@ -132,8 +133,9 @@ public class RegionAction extends DispatchAction {
 		        int i = 0;
 		        
 		        while (rs.next()) {
+		        	String sId = rs.getString("id");
 		            String text = rs.getString("text");
-		            tree1.add(new SubNode(String.format("SP%d", i), text, NodeType.GENUS, true));
+		            tree1.add(new SubNode(sId, text, NodeType.SPECIE, false));
 		            i++;
 		        }
 		        
@@ -144,8 +146,10 @@ public class RegionAction extends DispatchAction {
 			out.write(json.toString());
 			
 		} catch (IOException e) {
+			
 			e.printStackTrace();
 		} finally {
+			
 			out.flush();
 			out.close();
 		}
