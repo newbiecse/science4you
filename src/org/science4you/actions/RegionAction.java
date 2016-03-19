@@ -17,6 +17,7 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.actions.DispatchAction;
+import org.science4you.datasources.Science4youContext;
 import org.science4you.forms.SpecieForm;
 import org.science4you.helpers.Node;
 import org.science4you.helpers.NodeType;
@@ -30,6 +31,9 @@ public class RegionAction extends DispatchAction {
 	public ActionForward goToSearchPage(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
+		
+		String specieId = request.getParameter("specieId");
+		
 		
 		
 		return mapping.findForward("search");
@@ -45,27 +49,7 @@ public class RegionAction extends DispatchAction {
 		SpecieForm specieForm = (SpecieForm) form;
 		NodeType type = NodeType.valueOf(specieForm.getType());
 
-		try {
-
-			Class.forName("oracle.jdbc.driver.OracleDriver");
-
-		} catch (ClassNotFoundException e) {
-
-			e.printStackTrace();
-		}
-
-		Connection connection = null;
-
-		try {
-			
-			connection = DriverManager.getConnection(
-					"jdbc:oracle:thin:@s4ora.science4you.org:1521:s2orcl", "s2web",
-					"s2web");
-		} catch (SQLException e) {
-
-			e.printStackTrace();
-		}
-		
+		Connection connection = Science4youContext.getConnection();
 		Statement stmt = null;
 		String query = null;
 		
@@ -145,7 +129,7 @@ public class RegionAction extends DispatchAction {
 			out = response.getWriter();
 			out.write(json.toString());
 			
-		} catch (IOException e) {
+		} catch (Exception e) {
 			
 			e.printStackTrace();
 		} finally {

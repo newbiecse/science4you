@@ -40,8 +40,8 @@ SpeciesTree = function () {
 		    'core' : {
 		      'data' : {
 		    	  'url': function(node) {
-		    		  
-		    		  var url = 'http://localhost:8080/science4you/region.do?dispatch=searchGroup';
+		    		  		    		  
+		    		  var url = window.location.origin + '/science4you/region.do?dispatch=searchGroup';
 		    		  
 		    		  if (node.id === '#') {
 		    			  url += '&type=ROOT';
@@ -141,7 +141,14 @@ SpeciesTree = function () {
 				  switch(node.data.type) {
 					  case NodeType.SPECIE:
 						  
-//						  alert('navigation to url')
+						  if (node.id != idSpecie) {
+							
+								var baseUrl = window.location.origin;
+								var navigateUrl = '/science4you/region.do?dispatch=goToSearchPage&specieId=' + node.id;
+								
+								window.location.href = baseUrl + navigateUrl;
+						  }
+						  
 						  break;
 				  }
 			  }
