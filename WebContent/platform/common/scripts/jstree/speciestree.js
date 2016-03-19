@@ -52,16 +52,17 @@ SpeciesTree = function () {
 		      'data' : {
 		    	  'url': function(node) {
 		    		  
+		    		  var url = 'http://localhost:8080/science4you/region.do?dispatch=searchGroup';
+		    		  
 		    		  if (node.id === '#') {
-		    			  return 'http://localhost:8080/science4you/region.do?dispatch=searchGroup';
+		    			  url += '&type=ROOT';
 		    		  } else {
 		    			  
-		    			  var url = 'http://localhost:8080/science4you/region.do?dispatch=searchGroup';
 		    			  url += '&type=' + node.data.type;
-		    			  url += '&text=' + node.text;
-		    			  
-		    			  return url;
+		    			  url += '&text=' + node.text;		    			  		    			 
 		    		  }
+		    		  
+		    		  return url;
 		    	  },
 		    	  'dataType': 'json',
 		    	  'data': function (node) {

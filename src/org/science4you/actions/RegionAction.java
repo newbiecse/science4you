@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,14 +41,8 @@ public class RegionAction extends DispatchAction {
 		response.setContentType("application/json");
 		PrintWriter out = null;
 		
-		String sId = request.getParameter("id");
-		int id = 0;
-		
-		if (sId != null && StringUtil.isInteger(sId)) {
-			id = Integer.parseInt(sId);
-		}
-		
-		System.out.println("-------- Oracle JDBC Connection Testing ------");
+		SpecieForm specieForm = (SpecieForm) form;
+		NodeType type = NodeType.valueOf(specieForm.getType());
 
 		try {
 
@@ -54,78 +50,95 @@ public class RegionAction extends DispatchAction {
 
 		} catch (ClassNotFoundException e) {
 
-			System.out.println("Where is your Oracle JDBC Driver?");
 			e.printStackTrace();
 		}
-
-		System.out.println("Oracle JDBC Driver Registered!");
 
 		Connection connection = null;
 
 		try {
-
+			
 			connection = DriverManager.getConnection(
 					"jdbc:oracle:thin:@s4ora.science4you.org:1521:s2orcl", "s2web",
 					"s2web");
-
 		} catch (SQLException e) {
 
-			System.out.println("Connection Failed! Check output console");
 			e.printStackTrace();
 		}
-
-		if (connection != null) {
-			System.out.println("You made it, take control your database now!");
-		} else {
-			System.out.println("Failed to make connection!");
-		}		
 		
+		Statement stmt = null;
+		String query = null;
 		
 		try {			
-
 			List<Node> tree = new ArrayList<Node>();
 			List<SubNode> tree1 = new ArrayList<SubNode>();
-			
 			String json = "";
-			
-			if (id == 0) {
+					
+			if (NodeType.ROOT == type) {
 				Node root = new Node(1, "Select specie", NodeType.ROOT);
-				root.addChild(new SubNode(2, "Group 1", NodeType.GROUP, true));
-				root.addChild(new SubNode(3, "Group 2", NodeType.GROUP, true));	
 				
+				query = "select DISTINCT dispgroup text " +
+						"from vims2you.S4projecttaxa pt, vims2you.s4ptname n " +
+						"where pt.project_id = 503 and pt.ptname_id = n.ptname_id " +
+						"order by text";
+				
+				stmt = connection.createStatement();
+		        ResultSet rs = stmt.executeQuery(query);
+		        int i = 0;
+		        
+		        while (rs.next()) {
+		            String text = rs.getString("text");
+		            root.addChild(new SubNode(String.format("GR%d", i), text, NodeType.GROUP, true));
+		            i++;
+		        }				
+								
 				tree.add(root);
+				
 				json = new Gson().toJson(tree);
-			} else {
 				
-				SpecieForm specieForm = (SpecieForm) form;
-				NodeType type = NodeType.valueOf(specieForm.getType());
+			} else if (NodeType.GROUP == type) {
+
+				query = String.format(
+				"select DISTINCT n.gattung text " +
+				"from vims2you.S4projecttaxa pt, vims2you.s4ptname n " + 
+				"where pt.project_id = 503 and pt.ptname_id = n.ptname_id and pt.dispgroup = '%s' " +
+				"order by text", specieForm.getText());
 				
-				if (NodeType.GROUP == type) {
+				stmt = connection.createStatement();
+		        ResultSet rs = stmt.executeQuery(query);
+		        int i = 0;
+		        
+		        while (rs.next()) {
+		            String text = rs.getString("text");
+		            tree1.add(new SubNode(String.format("GN%d", i), text, NodeType.GENUS, true));
+		            i++;
+		        }
+		        
+				json = new Gson().toJson(tree1);
+				
+			} else if (NodeType.ORDER == type) {				
+				// TODO:
+			} else if (NodeType.FAMILY == type) {
+				// TODO:
+			} else if (NodeType.GENUS == type) {
 
-					tree1.add(new SubNode(id * 10 + 1, String.format("Order %d", id * 10 + 1), NodeType.ORDER, true));
-					tree1.add(new SubNode(id * 10 + 2, String.format("Order %d", id * 10 + 2), NodeType.ORDER, true));
-
-					json = new Gson().toJson(tree1);
-				} else if (NodeType.ORDER == type) {				
-					
-					tree1.add(new SubNode(id * 10 + 1, String.format("Family %d", id * 10 + 1), NodeType.FAMILY, true));
-					tree1.add(new SubNode(id * 10 + 2, String.format("Family %d", id * 10 + 2), NodeType.FAMILY, true));
-					
-					json = new Gson().toJson(tree1);
-				} else if (NodeType.FAMILY == type) {
-
-					tree1.add(new SubNode(id * 10 + 1, String.format("Genus %d", id * 10 + 1), NodeType.GENUS, true));
-					tree1.add(new SubNode(id * 10 + 2, String.format("Genus %d", id * 10 + 2), NodeType.GENUS, true));
-					
-					json = new Gson().toJson(tree1);					
-				} else if (NodeType.GENUS == type) {
-
-					tree1.add(new SubNode(id * 10 + 1, String.format("Specie %d", id * 10 + 1), NodeType.SPECIE, false));
-					tree1.add(new SubNode(id * 10 + 2, String.format("Specie %d", id * 10 + 2), NodeType.SPECIE, false));
-					
-					json = new Gson().toJson(tree1);					
-				} 
-			}
+				query = String.format(
+				"select DISTINCT n.fullname text " +
+				"from vims2you.S4projecttaxa pt, vims2you.s4ptname n " + 
+				"where pt.project_id = 503 and pt.ptname_id = n.ptname_id and n.gattung = '%s' " +
+				"order by text", specieForm.getText());
+				
+				stmt = connection.createStatement();
+		        ResultSet rs = stmt.executeQuery(query);
+		        int i = 0;
+		        
+		        while (rs.next()) {
+		            String text = rs.getString("text");
+		            tree1.add(new SubNode(String.format("SP%d", i), text, NodeType.GENUS, true));
+		            i++;
+		        }
+		        
+				json = new Gson().toJson(tree1);
+			} 
 			
 			out = response.getWriter();
 			out.write(json.toString());

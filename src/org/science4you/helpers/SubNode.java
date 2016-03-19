@@ -2,7 +2,7 @@ package org.science4you.helpers;
 
 public class SubNode {
 	
-	private int id;
+	private String id;
 	private String text;
 	private Boolean children;
 	
@@ -12,23 +12,23 @@ public class SubNode {
 	private Object a_attr = new Object();
 	private NodeType type;
 	
-	public SubNode(int id, String text) {
+	public SubNode(String id, String text) {
 		this.id = id;
 		this.text = text;
 	}
 	
-	public SubNode(int id, String text, NodeType type, Boolean children) {
+	public SubNode(String id, String text, NodeType type, Boolean children) {
 		this.id = id;
 		this.text = text;
 		this.type = type;
 		this.children = children;
 	}
 	
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 	
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	

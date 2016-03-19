@@ -7,28 +7,27 @@ public class SpecieForm extends ActionForm {
 	
 	private static final long serialVersionUID = 1L;
 	
-	private int id;
+	private String id;
 	
-	private String name;
+	private String text;
 	
 	private String type;
 	
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public String getText() {
+		return text;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setText(String text) {
+		this.text = text;
 	}
-
 
 	private String dispatch;
 
