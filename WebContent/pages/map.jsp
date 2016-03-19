@@ -84,10 +84,10 @@
 	      	$(function() {
 	      		
 	      		SpeciesTree.init({
-	      			'idGroup': 'Entenvögel',
-	      			'idOrder': 21,
-	      			'idFamily': 212,
-	      			'idGenus': 'Aix',
+	      			'idGroup': '<bean:write name="specieForm" property="groupName" />',
+	      			'idOrder': null,
+	      			'idFamily': null,
+	      			'idGenus': '<bean:write name="specieForm" property="genusName" />',
 	      			'idSpecie': '<bean:write name="specieForm" property="specieId" />'
 	      		});
       		

@@ -34,8 +34,23 @@ public class RegionAction extends DispatchAction {
 		
 		if (specieForm.getSpecieId() != null && !specieForm.getSpecieId().isEmpty()) {
 			
+			Connection connection = Science4youContext.getConnection();
+			Statement stmt = null;
+			
+			String query = String.format(
+			"select n.ptname_id id, n.fullname peciename, n.gattung genusname, pt.dispgroup groupname " +
+			"from vims2you.S4projecttaxa pt, vims2you.s4ptname n " + 
+			"where pt.project_id = 503 and pt.ptname_id = %s and pt.ptname_id = n.ptname_id", specieForm.getSpecieId());
+			
+			stmt = connection.createStatement();
+	        
+			ResultSet rs = stmt.executeQuery(query);
+
+	        if(rs.next()) {
+	        	specieForm.setGroupName(rs.getString("groupname"));
+	        	specieForm.setGenusName(rs.getString("genusname"));
+        	}
 		}
-		
 		
 		return mapping.findForward("search");
 	}	
@@ -62,7 +77,7 @@ public class RegionAction extends DispatchAction {
 			if (NodeType.ROOT == type) {
 				Node root = new Node(1, "Select specie", NodeType.ROOT);
 				
-				query = "select DISTINCT dispgroup text " +
+				query = "select DISTINCT pt.dispgroup text " +
 						"from vims2you.S4projecttaxa pt, vims2you.s4ptname n " +
 						"where pt.project_id = 503 and pt.ptname_id = n.ptname_id " +
 						"order by text";
