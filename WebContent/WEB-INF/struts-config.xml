@@ -4,27 +4,18 @@
 <struts-config>
 
 	<form-beans>
+		<form-bean name="mapForm" type="org.science4you.forms.MapForm" />
 		<form-bean name="regionForm" type="org.science4you.forms.RegionForm" />
 		<form-bean name="specieForm" type="org.science4you.forms.SpecieForm" />
 	</form-beans>
 
-<!-- 
-	<global-forwards>
-		<forward name="goToSearch" path="/region/search.jsp" />
-		<forward name="search" path="/search.jsp" />
-	</global-forwards>
-	 -->
-
 	<action-mappings>
-		<action path="/region" type="org.science4you.actions.RegionAction" parameter="dispatch" name="specieForm">
+		<action path="/region" type="org.science4you.actions.RegionAction" parameter="dispatch" name="specieForm" scope="request">
 			<forward name="search" path="/pages/map.jsp" />
 		</action>
+
 	</action-mappings>
-	
-	<!--
-	<message-resources parameter="null" />
-	-->
-	
+		
 	<message-resources parameter="ApplicationResources" />
 	
 	<!--

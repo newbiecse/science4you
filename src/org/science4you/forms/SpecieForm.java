@@ -13,6 +13,12 @@ public class SpecieForm extends ActionForm {
 	
 	private String type;
 	
+	private String specieId;
+	
+	private String groupName;
+	
+	private String genusName;	
+	
 	public String getId() {
 		return id;
 	}
@@ -45,5 +51,29 @@ public class SpecieForm extends ActionForm {
 
 	public void setType(String type) {
 		this.type = type;
+	}
+
+	public String getSpecieId() {
+		return specieId;
+	}
+
+	public void setSpecieId(String specieId) {
+		this.specieId = specieId;
+	}
+
+	public String getGroupName() {
+		return groupName;
+	}
+
+	public void setGroupName(String groupName) {
+		this.groupName = groupName;
+	}
+
+	public String getGenusName() {
+		return genusName;
+	}
+
+	public void setGenusName(String genusName) {
+		this.genusName = genusName;
 	}
 }

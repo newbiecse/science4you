@@ -1,11 +1,8 @@
 package org.science4you.actions;
 
-import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,11 +15,11 @@ import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.actions.DispatchAction;
 import org.science4you.datasources.Science4youContext;
+import org.science4you.forms.MapForm;
 import org.science4you.forms.SpecieForm;
 import org.science4you.helpers.Node;
 import org.science4you.helpers.NodeType;
 import org.science4you.helpers.SubNode;
-import org.science4you.utils.StringUtil;
 
 import com.google.gson.Gson;
 
@@ -33,7 +30,11 @@ public class RegionAction extends DispatchAction {
 			throws Exception {
 		
 		String specieId = request.getParameter("specieId");
+		SpecieForm specieForm = (SpecieForm) form;
 		
+		if (specieForm.getSpecieId() != null && !specieForm.getSpecieId().isEmpty()) {
+			
+		}
 		
 		
 		return mapping.findForward("search");

@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@taglib uri="http://jakarta.apache.org/struts/tags-html" prefix="html"%>
+<%@taglib uri="http://jakarta.apache.org/struts/tags-bean" prefix="bean"%>
+<%@taglib uri="http://jakarta.apache.org/struts/tags-logic" prefix="logic"%>
 <html lang="de">
    <!-- benutzt menuh.css, struktur.css und s4you.css und neue css-basierte Aufteilung -->
    <head>
@@ -64,20 +66,36 @@
       <script language="JavaScript" type="text/javascript" src="${pageContext.request.contextPath}/platform/common/scripts/jstree/speciestree.js"></script>
       <script language="JavaScript" type="text/javascript" src="${pageContext.request.contextPath}/platform/common/scripts/mapcomparing/mapcompare.js"></script>      
       <script language="JavaScript" type="text/javascript" src="${pageContext.request.contextPath}/platform/common/scripts/searchmenu.js"></script>
-      <script type="text/javascript">
-      	$(function() {
+      
+      <logic:empty name="specieForm" property="specieId">
+	      <script type="text/javascript">
+	      	$(function() {
+	      		
+	      		SpeciesTree.init();
       		
-      		SpeciesTree.init({
-      			'idGroup': 'Entenvögel',
-      			'idOrder': 21,
-      			'idFamily': 212,
-      			'idGenus': 'Aix',
-      			'idSpecie': 48679
-      		});
+      			MapCompare.init();
+	      	})
+	      </script>      
+      </logic:empty>
+      
+      <logic:notEmpty name="specieForm" property="specieId">
+      
+	      <script type="text/javascript">
+	      	$(function() {
+	      		
+	      		SpeciesTree.init({
+	      			'idGroup': 'Entenvögel',
+	      			'idOrder': 21,
+	      			'idFamily': 212,
+	      			'idGenus': 'Aix',
+	      			'idSpecie': '<bean:write name="specieForm" property="specieId" />'
+	      		});
       		
-      		MapCompare.init();
-      	})
-      </script>
+      			MapCompare.init();
+	      	})
+	      </script>      
+      </logic:notEmpty>
+      
       <script type="text/javascript">
          <!-- First_global_variables -->
          
