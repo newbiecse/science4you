@@ -58,6 +58,7 @@ SpeciesTree = function () {
 		    			  
 		    			  var url = 'http://localhost:8080/science4you/region.do?dispatch=searchGroup';
 		    			  url += '&type=' + node.data.type;
+		    			  url += '&text=' + node.text;
 		    			  
 		    			  return url;
 		    		  }
