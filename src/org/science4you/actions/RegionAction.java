@@ -29,7 +29,6 @@ public class RegionAction extends DispatchAction {
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		
-		String specieId = request.getParameter("specieId");
 		SpecieForm specieForm = (SpecieForm) form;
 		
 		if (specieForm.getSpecieId() != null && !specieForm.getSpecieId().isEmpty()) {
@@ -43,10 +42,10 @@ public class RegionAction extends DispatchAction {
 			"where pt.project_id = 503 and pt.ptname_id = %s and pt.ptname_id = n.ptname_id", specieForm.getSpecieId());
 			
 			stmt = connection.createStatement();
-	        
 			ResultSet rs = stmt.executeQuery(query);
 
 	        if(rs.next()) {
+	        	
 	        	specieForm.setGroupName(rs.getString("groupname"));
 	        	specieForm.setGenusName(rs.getString("genusname"));
         	}
@@ -87,8 +86,9 @@ public class RegionAction extends DispatchAction {
 		        int i = 0;
 		        
 		        while (rs.next()) {
-		            String text = rs.getString("text");
-		            root.addChild(new SubNode(String.format("GR%d", i), text, NodeType.GROUP, true));
+
+		        	root.addChild(new SubNode(String.format("GR%d", i), 
+		        			rs.getString("text"), NodeType.GROUP, true));
 		            i++;
 		        }				
 								
@@ -109,8 +109,9 @@ public class RegionAction extends DispatchAction {
 		        int i = 0;
 		        
 		        while (rs.next()) {
-		            String text = rs.getString("text");
-		            tree1.add(new SubNode(String.format("GN%d", i), text, NodeType.GENUS, true));
+
+		        	tree1.add(new SubNode(String.format("GN%d", i), 
+		        			rs.getString("text"), NodeType.GENUS, true));
 		            i++;
 		        }
 		        
@@ -130,13 +131,11 @@ public class RegionAction extends DispatchAction {
 				
 				stmt = connection.createStatement();
 		        ResultSet rs = stmt.executeQuery(query);
-		        int i = 0;
 		        
 		        while (rs.next()) {
-		        	String sId = rs.getString("id");
-		            String text = rs.getString("text");
-		            tree1.add(new SubNode(sId, text, NodeType.SPECIE, false));
-		            i++;
+
+		        	tree1.add(new SubNode(rs.getString("id"), 
+		        			rs.getString("text"), NodeType.SPECIE, false));
 		        }
 		        
 				json = new Gson().toJson(tree1);
