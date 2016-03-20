@@ -98,12 +98,26 @@ MapCompare = function () {
 		
 	}
 	
+	var buildUICompare = function () {
+		
+		var $popupContainer = $('#popupCompare');
+		var $clone = $popupContainer.find('.popupCompareContent:first').clone();
+		
+		for(var i = 0; i < 5; i++) {
+			
+			$popupContainer.append($clone);
+		}
+		
+	    var $list = $popupContainer.find('.popupCompareContent').colorbox({inline:true, rel:'inline', href: function(){
+            return $(this).children();
+	    }});
+	    
+	    $list.eq(0).click();
+	}
+	
 	var openPopup = function() {
-		$.colorbox({
-//			initialWidth: 600,
-//			initialHeight: 500,
-			html: $('#popupCompare').html()
-		});
+
+		buildUICompare();
 	}
 	
 	return {
@@ -141,23 +155,7 @@ MapCompare = function () {
 				
 				openPopup();
 			});
-			
-//			$(".group1").colorbox({
-//				rel:'group1',
-//				  transition: "elastic",
-//				  close: "Close",				
-//				inline:true, 
-////				href:$(this).attr('href')
-//				});
-			
-		    var $group = $('.inline').colorbox({inline:true, rel:'inline', href: function(){
-	            return $(this).children();
-		    }});
-		    
-		      $('#open').on('click', function(e){
-		            e.preventDefault();
-		            $group.eq(0).click();
-		      });			
+					
 			
 		}
 	
