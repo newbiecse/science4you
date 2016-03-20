@@ -10,7 +10,7 @@ SpeciesTree = function () {
 	
 	var initValues = function(options) {
 				
-		if (options.idSpecie !== undefined) {
+		if (options !== undefined && options.idSpecie !== undefined) {
 			
 			idGroup = options.idGroup;
 			idOrder = options.idOrder;
