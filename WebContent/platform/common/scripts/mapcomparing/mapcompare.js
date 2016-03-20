@@ -98,21 +98,50 @@ MapCompare = function () {
 		
 	}
 	
+	var buildUIOneBox = function (dom, obj) {
+		
+		dom.find('.p-name').text(obj.name);
+		dom.find('img').attr('src', obj.srcImage);
+		dom.find('.p-date').text(obj.year);
+	}
+	
 	var buildUICompare = function () {
 		
-		var $popupContainer = $('#popupCompare');
-		var $clone = $popupContainer.find('.popupCompareContent:first').clone();
+		var $popupContainer = $('#popupCompare');		
 		
-		for(var i = 0; i < 5; i++) {
+		var keys = Object.keys(hash);
+		$popupContainer.find('.popupCompareContent:gt(0)').remove();
+		
+		for (var i = 1; i < keys.length; i++) {
 			
-			$popupContainer.append($clone);
+			var first = hash[keys[i-1]];
+			var second = hash[keys[i]];			
+			
+			if (i == 1) {
+
+				var $clone = $popupContainer.find('.popupCompareContent:first').clone();
+				
+				buildUIOneBox($clone.find('.left-content:first'), first);
+				buildUIOneBox($clone.find('.right-content:first'), second);
+				
+				$popupContainer.append($clone);
+				
+			} else {
+				
+				var $clone = $popupContainer.find('.popupCompareContent:first');
+				
+				buildUIOneBox($clone.find('.left-content:first'), first);
+				buildUIOneBox($clone.find('.right-content:first'), second);				
+				
+			}
+
 		}
-		
-	    var $list = $popupContainer.find('.popupCompareContent').colorbox({inline:true, rel:'inline', href: function(){
+				
+	    var $listGallery = $popupContainer.find('.popupCompareContent').colorbox({inline:true, rel:'inline', href: function(){
             return $(this).children();
 	    }});
 	    
-	    $list.eq(0).click();
+	    $listGallery.eq(0).click();
 	}
 	
 	var openPopup = function() {

@@ -57,14 +57,19 @@
 	display: none;
 }
 
-#popupCompareContent {
+.popupCompareContent {
 	background-color: #fff;
 	padding:10px;
 }
 
-#popupCompareContent .one-box {
+.one-box {
 	width: 49%;
 	float: left;
+}
+
+.one-box .p-name {
+	min-height: 50px;
+	margin-bottom: 10px;
 }
 
 .left-content {
