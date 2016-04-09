@@ -2,7 +2,7 @@ StatisticPage = function () {
 
 	return {
 
-		init: function() {
+		init: function(options) {
 			
 			var $speciesList = $('.specieslist:first');
 			
@@ -15,7 +15,7 @@ StatisticPage = function () {
 					var $sample = $('#specieSample');
 					
 					$.ajax({
-						url: '/science4you/statistic.do?dispatch=search',
+						url: options.url,
 						type: 'POST',
 						data: { 
 							groupname: $this.data('groupname')

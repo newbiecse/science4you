@@ -55,7 +55,9 @@
       <script language="JavaScript" type="text/javascript" src="${pageContext.request.contextPath}/platform/common/scripts/statisticpage.js"></script>
 	  <script type="text/javascript">
 	  	$(function() {
-	  		StatisticPage.init();
+	  		StatisticPage.init({
+	  			url: '${pageContext.request.contextPath}/statistic.do?dispatch=search'
+	  		});
 	  	})
 	  </script>      
       
