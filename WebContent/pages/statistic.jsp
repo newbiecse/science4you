@@ -375,11 +375,20 @@
 				 			</td>
 				 		</tr>
 				 		
-				 		<tr>
-				 			<td colspan="5">
-				 				<p><b>Spechte</b></p>
-				 			</td>
-				 		</tr>
+				 		<logic:iterate id="group" indexId="index" name="groupList">
+				 		
+					 		<tr>
+					 			<td colspan="5">
+					 				<p>
+					 					<b>
+					 						<bean:write name="group" property="name" filter="false" />
+					 					</b>
+					 				</p>
+					 			</td>
+					 		</tr>				 			
+				 		
+				 		</logic:iterate>
+				 		
 				 	</table>
 				 </div>
 				                     

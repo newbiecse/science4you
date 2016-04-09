@@ -1,39 +1,17 @@
 package org.science4you.forms;
 
+import java.util.List;
+
 import org.apache.struts.action.ActionForm;
-import org.science4you.helpers.NodeType;
+import org.science4you.beans.Group;
 
 public class StatisticForm extends ActionForm {
 	
 	private static final long serialVersionUID = 1L;
-	
-	private String id;
-	
-	private String name;
-	
-	private String type;
-	
-	private String specieId;
-	
-	private String groupName;
-	
-	private String genusName;	
-	
-	public String getId() {
-		return id;
-	}
 
-	public void setId(String id) {
-		this.id = id;
-	}
-
-	public String getText() {
-		return name;
-	}
-
-	public void setText(String text) {
-		this.name = text;
-	}
+	
+	private List<Group> groupList;
+	
 
 	private String dispatch;
 
@@ -45,35 +23,12 @@ public class StatisticForm extends ActionForm {
 		this.dispatch = dispatch;
 	}
 
-	public String getType() {
-		return type;
+	public List<Group> getGroupList() {
+		return groupList;
 	}
 
-	public void setType(String type) {
-		this.type = type;
+	public void setGroupList(List<Group> groupList) {
+		this.groupList = groupList;
 	}
 
-	public String getSpecieId() {
-		return specieId;
-	}
-
-	public void setSpecieId(String specieId) {
-		this.specieId = specieId;
-	}
-
-	public String getGroupName() {
-		return groupName;
-	}
-
-	public void setGroupName(String groupName) {
-		this.groupName = groupName;
-	}
-
-	public String getGenusName() {
-		return genusName;
-	}
-
-	public void setGenusName(String genusName) {
-		this.genusName = genusName;
-	}
 }

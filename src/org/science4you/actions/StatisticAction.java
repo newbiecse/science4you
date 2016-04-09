@@ -14,8 +14,8 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.actions.DispatchAction;
+import org.science4you.beans.Group;
 import org.science4you.datasources.Science4youContext;
-import org.science4you.forms.MapForm;
 import org.science4you.forms.SpecieForm;
 import org.science4you.forms.StatisticForm;
 import org.science4you.helpers.Node;
@@ -35,20 +35,26 @@ public class StatisticAction extends DispatchAction {
 		Connection connection = Science4youContext.getConnection();
 		Statement stmt = null;
 		
-		String query = String.format(
-		"select n.ptname_id id, n.fullname peciename, n.gattung genusname, pt.dispgroup groupname " +
+		String query = 
+		"select DISTINCT pt.dispgroup groupname " +
 		"from vims2you.S4projecttaxa pt, vims2you.s4ptname n " + 
-		"where pt.project_id = 503 and pt.ptname_id = %s and pt.ptname_id = n.ptname_id", statisticForm.getSpecieId());
+		"where pt.project_id = 503 and pt.ptname_id = n.ptname_id";
 		
 		stmt = connection.createStatement();
 		ResultSet rs = stmt.executeQuery(query);
-
-        if(rs.next()) {
-        	
-        	statisticForm.setGroupName(rs.getString("groupname"));
-        	statisticForm.setGenusName(rs.getString("genusname"));
-    	}
 		
+		List<Group> groupList = new ArrayList<Group>();
+		
+		int i = 1;
+		
+        while (rs.next()) {
+        	// TODO: get groupId
+        	groupList.add(new Group(i, rs.getString("groupname")));
+        	i++;
+        }				
+		
+        request.setAttribute("groupList", groupList);
+        
 		return mapping.findForward("statistic");
 	}	
 	
