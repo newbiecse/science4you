@@ -1,0 +1,16 @@
+.sts-group {
+	cursor: pointer; 
+}
+
+#specieSample {
+	display: none;
+}
+
+.sensitiv {
+	color:red;
+	font-weight:bold;
+}
+
+.display-hide {
+	display: none;
+}

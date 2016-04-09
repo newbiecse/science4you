@@ -1,18 +1,13 @@
 package org.science4you.forms;
 
-import java.util.List;
-
 import org.apache.struts.action.ActionForm;
-import org.science4you.beans.Group;
 
 public class StatisticForm extends ActionForm {
 	
 	private static final long serialVersionUID = 1L;
 
+	private String groupname;
 	
-	private List<Group> groupList;
-	
-
 	private String dispatch;
 
 	public String getDispatch() {
@@ -23,12 +18,12 @@ public class StatisticForm extends ActionForm {
 		this.dispatch = dispatch;
 	}
 
-	public List<Group> getGroupList() {
-		return groupList;
+	public String getGroupname() {
+		return groupname;
 	}
 
-	public void setGroupList(List<Group> groupList) {
-		this.groupList = groupList;
+	public void setGroupname(String groupname) {
+		this.groupname = groupname;
 	}
 
 }

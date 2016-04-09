@@ -23,6 +23,9 @@
       <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/platform/mo/nabeat/common/skins/styles/skin.css">
       <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/platform/mo/nabeat/common/skins/styles/menu.css">
       <link rel="SHORTCUT ICON" href="${pageContext.request.contextPath}/platform/mo/nabeat/common/skins/nabeat.favicon.ico">
+      
+      <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/platform/common/styles/statistic.css">
+      
       <!--[if lt IE 7]>
       <style type="text/css" media="screen">
          body{behavior:url(/platform/common/styles/csshover.htc); font-size:100%;}
@@ -34,7 +37,7 @@
       <!-- Begin_Head -->
       <script language="JavaScript" src="${pageContext.request.contextPath}/platform/common/scripts/authortools.js"></script>
       <script language="JavaScript" src="${pageContext.request.contextPath}/platform/common/scripts/global.js"></script>
-      <script language="JavaScript" src="${pageContext.request.contextPath}/platform/mo/nabeat/common/scripts/nabeat.js"></script>
+      <script language="JavaScript" src="${pageContext.request.contextPath}/platform/mo/nabeat/common/scripts/nabeat.js"></script>      
       <!-- End_Head -->
       <!-- Begin_Head -->
       <!-- End_Head -->
@@ -49,6 +52,12 @@
       <script language="JavaScript" type="text/javascript" src="${pageContext.request.contextPath}/platform/common/scripts/jquery/jquery.hotkeys.js"></script>
       <script language="JavaScript" type="text/javascript" src="${pageContext.request.contextPath}/platform/common/scripts/colorbox/jquery.colorbox-min.js"></script>      
       
+      <script language="JavaScript" type="text/javascript" src="${pageContext.request.contextPath}/platform/common/scripts/statisticpage.js"></script>
+	  <script type="text/javascript">
+	  	$(function() {
+	  		StatisticPage.init();
+	  	})
+	  </script>      
       
       <script type="text/javascript">
          <!-- First_global_variables -->
@@ -375,14 +384,28 @@
 				 			</td>
 				 		</tr>
 				 		
+						<tr id="specieSample" class="child" data-group="0" data-specieid="0">
+						   <td>
+						      <p class="wissname" title=""></p>
+						      <p class="trivialname"></p>
+						   </td>
+						   <td align="center">
+						      <p class="minimumlevel"></p>
+						   </td>
+						   <td align="center">
+						   	  <p class="sensitiv display-hide">[P!]</p>
+						   </td>
+						   <td align="center">
+						      <p class="grname"></p>
+						   </td>
+						</tr>				 		
+				 		
 				 		<logic:iterate id="group" indexId="index" name="groupList">
 				 		
-					 		<tr>
+					 		<tr class="sts-group collapse" data-loaded="false" data-groupname="<bean:write name="group" property="name" filter="false" />">
 					 			<td colspan="5">
 					 				<p>
-					 					<b>
-					 						<bean:write name="group" property="name" filter="false" />
-					 					</b>
+					 					<b><bean:write name="group" property="name" filter="false" /></b>
 					 				</p>
 					 			</td>
 					 		</tr>				 			
